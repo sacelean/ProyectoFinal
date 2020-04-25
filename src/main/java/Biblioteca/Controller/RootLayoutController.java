@@ -1,11 +1,11 @@
-package sample.Controller;
+package Biblioteca.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import sample.Main;
+import Biblioteca.Main;
 
 public class RootLayoutController {
 
@@ -36,11 +36,24 @@ public class RootLayoutController {
         btnHome.setDisable(true);
     }
 
-    public void handleInsertarLibro() {
+    private void selectButtonMenu(Button btn){
+        selectedButton.setDisable(false);
+        selectedButton = btn;
+        selectedButton.setDisable(true);
+    }
 
+    public void handleInsertarLibro() {
+        selectButtonMenu(btnInsertarLibro);
+        mainApp.showInsertarLayout();
     }
 
     public void handleBuscarReferencia() {
+        selectButtonMenu(btnBuscarReferencia);
+        mainApp.showBuscarReferencia();
+    }
 
+    public void handleHome(){
+        selectButtonMenu(btnHome);
+        mainApp.showHomeOverview();
     }
 }

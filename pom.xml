@@ -87,7 +87,7 @@
         <dependency>
             <groupId>de.jensd</groupId>
             <artifactId>fontawesomefx</artifactId>
-            <version>8.4</version>
+            <version>8.9</version>
         </dependency>
         <dependency>
             <groupId>com.jfoenix</groupId>

@@ -411,8 +411,6 @@
 }
 
 .button {
-    -fx-background-radius: 2;
-    -fx-border-radius: 10;
     -fx-background-color: #00539C;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-text-fill: #d8d8d8;
