@@ -16,7 +16,7 @@ public class DataDBimpl implements DataDB{
 	 * Constructor
 	 *
 	 */
-	DataDBimpl(DAOFactory daoFactory) {
+	public DataDBimpl(DAOFactory daoFactory) {
 		this.daoFactory = daoFactory;
 	}
 

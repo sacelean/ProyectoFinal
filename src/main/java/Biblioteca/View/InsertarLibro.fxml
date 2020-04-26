@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Biblioteca.Controller.InsertarLibroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@themeBlack.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Biblioteca.Controller.InsertarLibroController">
    <children>
       <VBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
@@ -37,7 +38,7 @@
                   <Label text="Num. páginas" GridPane.rowIndex="6" />
                   <Label text="Año" GridPane.rowIndex="5" />
                   <Label text="ISBN" GridPane.rowIndex="7" />
-                  <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="txtTitulo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -46,6 +47,7 @@
                   <JFXComboBox GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
+            <JFXButton fx:id="btnCrear" onAction="#handleCrear" text="Crear" />
          </children>
       </VBox>
    </children>

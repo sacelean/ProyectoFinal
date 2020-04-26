@@ -1,5 +1,7 @@
 package DAO;
 
+import Biblioteca.Model.Libro;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -114,7 +116,9 @@ public abstract class DAOFactory {
     public DataDB getDataDB() {
         return new DataDBimpl(this);
     }
-
+    public DAO<Libro> getLibroDAO() {
+        return new LibroDAOImpl(this);
+    }
 
     // You can add more DAO implementation getters here.
 

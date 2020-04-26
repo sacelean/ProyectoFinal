@@ -19,8 +19,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-
         primaryStage.setTitle("Biblioteca");
         this.primaryStage = primaryStage;
         primaryStage.setScene(new Scene(rootLayout));

@@ -18,10 +18,10 @@ public class LoadProperties {
     private Map<String, String> mapProperties;
 
 	public LoadProperties() {
-        this.user = "";
-        this.pass = "";
-        this.driverClass = "";
-
+        this.user = "root";
+        this.pass = "Anna2019+";
+        this.driverClass = "com.mysql.jdbc.Driver";
+		this.strURLConnection = "jdbc:mysql://localhost:3306/sga?useSSL=false";
     }
 
 
