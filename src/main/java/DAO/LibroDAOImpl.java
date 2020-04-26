@@ -25,7 +25,7 @@ public class LibroDAOImpl implements DAO<Libro> {
         libro.setTitulo(resultSet.getString("titulo"));
         libro.setTitulo(resultSet.getString("autor"));
         libro.setEditorial(resultSet.getString("editorial"));
-        libro.setISBN(resultSet.getLong("ISBN"));
+        libro.setISBN(resultSet.getString("ISBN"));
         libro.setPageNumber(resultSet.getInt("pageNumber"));
         libro.setYear(resultSet.getInt("year"));
         return libro;
@@ -34,7 +34,7 @@ public class LibroDAOImpl implements DAO<Libro> {
     @Override
     public Libro find(long id) throws DAOException {
         Libro result = null;
-        String sql = "Select * from libros where idLibros = ?";
+        String sql = "Select * from libro where idLibro = ?";
         try (
                 Connection connection = daoFactory.getConnection();
                 PreparedStatement statement = prepareStatement(connection, sql, false, String.valueOf(id));

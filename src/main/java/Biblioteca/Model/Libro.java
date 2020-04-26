@@ -4,7 +4,7 @@ public class Libro {
 
     private String titulo;
     private String autor;
-    private long ISBN;
+    private String ISBN;
     private int year;
     private String editorial;
     private int pageNumber;
@@ -14,11 +14,11 @@ public class Libro {
         this.autor = "";
         this.editorial = "";
         this.year = 0000;
-        this.ISBN = 0;
+        this.ISBN = "";
         this.pageNumber = 0;
     }
 
-    public Libro(String titulo, String autor, long ISBN, int year, String editorial, int pageNumber) {
+    public Libro(String titulo, String autor, String ISBN, int year, String editorial, int pageNumber) {
         this.titulo = titulo;
         this.autor = autor;
         this.ISBN = ISBN;
@@ -44,11 +44,11 @@ public class Libro {
         this.autor = autor;
     }
 
-    public long getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(long ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
