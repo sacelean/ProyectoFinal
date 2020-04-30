@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@themeBlack.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Biblioteca.Controller.InsertarLibroController">
+<AnchorPane fx:id="anchorPaneLibro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@themeBlack.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Biblioteca.Controller.InsertarLibroController">
    <children>
-      <VBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <VBox fx:id="vBoxLibro" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
-            <Label text="Registro de libros" />
-            <GridPane hgap="5.0" vgap="20.0">
+            <Label fx:id="lblRegistroLibro" text="Registro de libros" />
+            <GridPane fx:id="gridPaneLibro" hgap="5.0" vgap="20.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="96.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="83.0" />
@@ -31,20 +31,20 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label text="Libro / Articulo" GridPane.rowIndex="1" />
-                  <Label text="Título" GridPane.rowIndex="2" />
-                  <Label text="Autor" GridPane.rowIndex="3" />
-                  <Label text="Editorial" GridPane.rowIndex="4" />
-                  <Label text="Num. páginas" GridPane.rowIndex="6" />
-                  <Label text="Año" GridPane.rowIndex="5" />
-                  <Label text="ISBN" GridPane.rowIndex="7" />
-                  <JFXTextField fx:id="txtTitulo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <JFXComboBox GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lblLibroArticulo" text="Libro / Articulo" GridPane.rowIndex="1" />
+                  <Label fx:id="lblTitulo" text="Título" GridPane.rowIndex="2" />
+                  <Label fx:id="lblAutor" text="Autor" GridPane.rowIndex="3" />
+                  <Label fx:id="lblEditorial" text="Editorial" GridPane.rowIndex="4" />
+                  <Label fx:id="lblNumPag" text="Num. páginas" GridPane.rowIndex="6" />
+                  <Label  fx:id="lblAnio" text="Año" GridPane.rowIndex="5" />
+                  <Label fx:id="lblISBN" text="ISBN" GridPane.rowIndex="7" />
+                  <JFXTextField fx:id="JTxtTitulo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="JTxtAutor" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <JFXTextField fx:id="JTxtEditorial" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <JFXTextField fx:id="JTxtAnio" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <JFXTextField fx:id="JTxtNumPag" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <JFXTextField fx:id="JTxtISBN" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <JFXComboBox fx:id="JComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <JFXButton fx:id="btnCrear" onAction="#handleCrear" text="Crear" />
