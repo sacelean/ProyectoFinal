@@ -12,19 +12,19 @@
       <VBox BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="lblTitulo" alignment="CENTER" prefWidth="130.0" styleClass="label-title" text="Menu" />
-            <Button fx:id="btnInsertarLibro" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleInsertarLibro" prefHeight="40.0" prefWidth="150.0" styleClass="button-embedded" text="Insertar Libro">
+            <Button fx:id="btnInsertarLibro" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleInsertarLibro" prefHeight="40.0" prefWidth="150.0" styleClass="button-embedded" text="Insertar">
                <graphic>
                   <FontAwesomeIconView glyphName="BOOK" />
                </graphic></Button>
-            <Button fx:id="btnBuscarReferencia" alignment="TOP_LEFT" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleBuscarReferencia" prefHeight="40.0" prefWidth="150.0" styleClass="button-embedded" text="Buscar Referencia">
+            <Button fx:id="btnBuscarReferencia" alignment="TOP_LEFT" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleBuscarReferencia" prefHeight="40.0" prefWidth="150.0" styleClass="button-embedded" text="Buscar">
                <graphic>
                   <FontAwesomeIconView glyphName="SEARCH" />
                </graphic></Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="button-embedded" text="Button">
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="button-embedded" text="Insertar notas">
                <graphic>
                   <FontAwesomeIconView />
                </graphic></Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="button-embedded" text="Button">
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="button-embedded" text="Modificar">
                <graphic>
                   <FontAwesomeIconView />
                </graphic></Button>
