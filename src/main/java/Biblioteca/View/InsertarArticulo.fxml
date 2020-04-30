@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,13 +10,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="247.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="AnchorPaneArtic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="247.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox layoutX="30.0" layoutY="26.0" prefHeight="347.0" prefWidth="217.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+      <VBox fx:id="vBoxArtic" layoutX="30.0" layoutY="26.0" prefHeight="347.0" prefWidth="217.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
          <children>
-            <Label text="Registro de articulo" />
-            <GridPane hgap="5.0" prefHeight="354.0" prefWidth="227.0" vgap="20.0">
+            <Label fx:id="lblRegistroArtic" text="Registro de articulo" />
+            <GridPane fx:id="gridPaneArtic" hgap="5.0" prefHeight="354.0" prefWidth="227.0" vgap="20.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,16 +36,24 @@
                   <Insets top="10.0" />
                </padding>
                <children>
-                  <Label text="Titulo" GridPane.rowIndex="2" />
-                  <Label text="Autor" GridPane.rowIndex="3" />
-                  <Label text="Nombre de la revista" GridPane.rowIndex="4" />
-                  <Label text="Año" GridPane.rowIndex="5" />
-                  <Label text="Mes" GridPane.rowIndex="6" />
-                  <Label text="Pagina de inicio" GridPane.rowIndex="7" />
-                  <Label text="Pagina de fin" GridPane.rowIndex="8" />
-                  <Label text="ISSN" GridPane.rowIndex="9" />
-                  <Label text="Libro / Articulo" GridPane.rowIndex="1" />
-                  <JFXComboBox promptText="Articulo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lblTitulo" text="Titulo" GridPane.rowIndex="2" />
+                  <Label fx:id="lblAutor" text="Autor" GridPane.rowIndex="3" />
+                  <Label fx:id="lblNombreRev" text="Nombre de la revista" GridPane.rowIndex="4" />
+                  <Label fx:id="lblAnio" text="Año" GridPane.rowIndex="5" />
+                  <Label fx:id="lblMes" text="Mes" GridPane.rowIndex="6" />
+                  <Label fx:id="lblPInicio" text="Pagina de inicio" GridPane.rowIndex="7" />
+                  <Label fx:id="lblPFin" text="Pagina de fin" GridPane.rowIndex="8" />
+                  <Label fx:id="lblISSN" text="ISSN" GridPane.rowIndex="9" />
+                  <Label fx:id="lblLibroArticulo" text="Libro / Articulo" GridPane.rowIndex="1" />
+                  <JFXComboBox fx:id="JComboBox" promptText="Articulo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="JTxtTitulo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="JTxtAutor" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <JFXTextField fx:id="JTxtNombreRev" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <JFXTextField fx:id="JTxtAnio" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <JFXTextField fx:id="JTxtMes" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <JFXTextField fx:id="JTxtPInicio" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <JFXTextField fx:id="JTxtPFin" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <JFXTextField fx:id="JTxtISSN" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                </children>
             </GridPane>
          </children>
