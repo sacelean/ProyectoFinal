@@ -1,5 +1,6 @@
 package Biblioteca;
 
+import Biblioteca.Controller.BuscarController;
 import Biblioteca.Controller.RootLayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(rootLayout));
         primaryStage.show();
         showHomeOverview();
+
     }
 
     @Override
@@ -66,6 +68,33 @@ public class Main extends Application {
         }
     }
 
-    public void showBuscarReferencia() {
+    public void showInsertarArt(){
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("View/InsertarArticulo.fxml"));
+        AnchorPane insertarArticulo = null;
+        try {
+            insertarArticulo = loader.load();
+            rootLayout.setCenter(insertarArticulo);
+            InsertarLibroController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showBuscar() {
+        //Se podran buscar libros por ejemplo libros por fecha, autor o titulo, y sus notas asociadas.
+        //Buscar todas las notas de un tema determinado. Ej tema ciencia todas las notas.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("View/Buscar.fxml"));
+        AnchorPane buscar = null;
+        try {
+            buscar = loader.load();
+            rootLayout.setCenter(buscar);
+            BuscarController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,6 +1,7 @@
 package Biblioteca.Controller;
 
 import Biblioteca.Main;
+import Biblioteca.Model.Articulo;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class InsertarLibroController {
@@ -36,6 +38,7 @@ public class InsertarLibroController {
     private Main mainApp;
 
 
+
     public InsertarLibroController(){
 
     }
@@ -46,6 +49,15 @@ public class InsertarLibroController {
 
     public void handleCrear(ActionEvent actionEvent) {
 
+    }
+   /* public void handleInsertarArticulo() {
+        JComboBox = InsertarArticuloController;
+        mainApp.showInsertarArt();
+    }*/
+@FXML
+    private String getTextTitulo(){
+        String s = JTxtTitulo.getText();
+        return s;
     }
 
 
