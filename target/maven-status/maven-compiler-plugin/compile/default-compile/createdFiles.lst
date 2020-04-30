@@ -1,0 +1,13 @@
+DAO\DAOUtil.class
+DAO\DriverManagerDAOFactory.class
+DAO\DataDB.class
+Biblioteca\Controller\RootLayoutController.class
+DAO\LoadProperties.class
+DAO\DAOConfigurationException.class
+Biblioteca\Main.class
+Biblioteca\Controller\HomeLayoutController.class
+DAO\DAOException.class
+DAO\DataDBimpl.class
+DAO\DAOFactory.class
+Biblioteca\Controller\InsertarLibroController.class
+Biblioteca\Model\Libro.class
