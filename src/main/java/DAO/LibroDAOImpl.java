@@ -1,14 +1,13 @@
 package DAO;
 
+import Biblioteca.Model.Articulo;
 import Biblioteca.Model.Libro;
-import DAO.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 import static DAO.DAOUtil.prepareStatement;
 
@@ -70,7 +69,7 @@ public class LibroDAOImpl implements DAO<Libro> {
     }
 
     @Override
-    public long save(Libro libro) throws IllegalArgumentException, DAOException {
+    public Articulo save(Libro libro) throws IllegalArgumentException, DAO.DAOException {
         return 0;
     }
 }
