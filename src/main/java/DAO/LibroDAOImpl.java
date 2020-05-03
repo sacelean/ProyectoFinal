@@ -3,10 +3,7 @@ package DAO;
 import Biblioteca.Model.Articulo;
 import Biblioteca.Model.Libro;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 import static DAO.DAOUtil.prepareStatement;
@@ -60,16 +57,56 @@ public class LibroDAOImpl implements DAO<Libro> {
 
     @Override
     public int update(Libro libro, String... values) throws IllegalArgumentException, DAOException {
-        return 0;
+
+        //como decirle la columna y el valor?
+       String sql =  ("UPDATE libro SET" + columna +"where idLibro =" + libro.setIdLibro(value));
+
+        int generatedKey;
+        try (
+                Connection connection = daoFactory.getConnection();
+                CallableStatement statement = connection.prepareCall(sql)
+        ) {
+            int i = 1;
+            for (Object value : values){
+                statement.setObject(i++, value);
+            }
+            statement.registerOutParameter(i, Types.NUMERIC);
+            statement.execute();
+            generatedKey = statement.getInt(i);
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return generatedKey;
     }
 
     @Override
     public int delete(Libro libro) throws IllegalArgumentException, DAOException {
-        return 0;
+        String sql = ( "delete libro from libro where idLibro ="+ libro.getIdLibro());
+
+        try (
+                Connection connection = daoFactory.getConnection();
+                PreparedStatement statement = prepareStatement(connection, sql, false, String.valueOf(id));
+                ResultSet resultSet = statement.executeQuery()
+        ) {
+            if (resultSet.next()) {
+                result = map(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new DAOException( e.getMessage() + e.getCause());
+        }
+
+       return 0;
     }
 
     @Override
-    public Articulo save(Libro libro) throws IllegalArgumentException, DAOException {
-        return 0;
+    public Libro save(Libro libro) throws IllegalArgumentException, DAOException {
+        libro.setISBN(libro.getISBN());
+        libro.setTitulo(libro.getTitulo());
+        libro.setAutor(libro.getAutor());
+        libro.setEditorial(libro.getEditorial());
+        libro.setPageNumber(libro.getPageNumber());
+        libro.setYear(libro.getYear());
+
+        return libro;
     }
 }
