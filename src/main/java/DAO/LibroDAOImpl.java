@@ -59,7 +59,7 @@ public class LibroDAOImpl implements DAO<Libro> {
     public int update(Libro libro, String... values) throws IllegalArgumentException, DAOException {
 
         //como decirle la columna y el valor?
-       String sql =  ("UPDATE libro SET" + columna +"where idLibro =" + libro.setIdLibro(value));
+       String sql =  ("UPDATE libro SET columna= algo where idLibro =" + libro.setIdLibro(libro.getIdLibro()));
 
         int generatedKey;
         try (
