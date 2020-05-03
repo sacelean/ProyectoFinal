@@ -1,7 +1,8 @@
 package DAO;
 
+import Biblioteca.Model.Articulo;
+
 import java.util.List;
-import java.util.Optional;
 
 public interface DAO<T> {
 
@@ -15,5 +16,6 @@ public interface DAO<T> {
 
     int delete(T t) throws  IllegalArgumentException, DAOException;
 
-    long save(T t) throws IllegalArgumentException, DAOException;
+    Articulo save(T t) throws IllegalArgumentException, DAO.DAOException;
+
 }

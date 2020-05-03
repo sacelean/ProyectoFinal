@@ -2,6 +2,7 @@ package Biblioteca.Controller;
 
 import Biblioteca.Main;
 import Biblioteca.Model.Articulo;
+import Biblioteca.Model.Libro;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +38,12 @@ public class InsertarLibroController {
     @FXML private JFXTextField JTxtNumPag;
     @FXML private JFXTextField JTxtISBN;
     private Main mainApp;
+    //para poder usar abajo los metodos del libro
+    private Libro l;
+    private boolean okCLicked = false;
 
+    //para poner un futuro boton de cancelar
+    private Stage dialogStage;
 
 
     public InsertarLibroController(){
@@ -50,6 +57,49 @@ public class InsertarLibroController {
     public void handleCrear(ActionEvent actionEvent) {
 
     }
+    public boolean isOkClicked() {
+        return this.okCLicked;
+    }
+
+
+    @FXML
+
+    //metodo para el boton de cancelar
+    private void handleCancel() {
+        dialogStage.close();
+    }
+
+//Control de que no haya titulo, autor o isbn vacios
+    private boolean isInputValid() {
+        String errorMessage = "";
+
+        if (JTxtTitulo.getText() == null || JTxtTitulo.getText().length() == 0) {
+            errorMessage += "No valid first name!\n";
+        }
+        if (JTxtAutor.getText() == null || JTxtAutor.getText().length() == 0) {
+            errorMessage += "No valid last name!\n";
+        }
+        if (JTxtISBN.getText() == null || JTxtISBN.getText().length() == 0) {
+            errorMessage += "No valid street!\n";
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private void handleOk() {
+        if (isInputValid()) {
+            l.setTitulo(JTxtTitulo.getText());
+            l.setAutor(JTxtAutor.getText());
+            l.setISBN(JTxtISBN.getText());
+
+            this.okCLicked = true;
+            dialogStage.close();
+        }
+    }
+
    /* public void handleInsertarArticulo() {
         JComboBox = InsertarArticuloController;
         mainApp.showInsertarArt();

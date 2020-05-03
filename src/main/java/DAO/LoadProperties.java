@@ -5,9 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
 
-/**
- * Created by bcpdm on 14/11/2017.
- */
+
 public class LoadProperties {
     private String user;
     private String pass;

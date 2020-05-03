@@ -8,6 +8,7 @@ public class Libro {
     private int year;
     private String editorial;
     private int pageNumber;
+    private int idLibro;
 
     public Libro() {
         this.titulo = "";
@@ -16,15 +17,17 @@ public class Libro {
         this.year = 0000;
         this.ISBN = "";
         this.pageNumber = 0;
+        this.idLibro = 0;
     }
 
-    public Libro(String titulo, String autor, String ISBN, int year, String editorial, int pageNumber) {
+    public Libro(String titulo, String autor, String ISBN, int year, String editorial, int pageNumber, int id) {
         this.titulo = titulo;
         this.autor = autor;
         this.ISBN = ISBN;
         this.year = year;
         this.editorial = editorial;
         this.pageNumber = pageNumber;
+        this.idLibro = id;
     }
 
     //Getter Setter
@@ -74,5 +77,13 @@ public class Libro {
 
     public void setPageNumber(int pageNumber) {
         this.pageNumber = pageNumber;
+    }
+
+    public int getIdLibro() {
+        return idLibro;
+    }
+
+    public void setIdLibro(int idLibro) {
+        this.idLibro = idLibro;
     }
 }

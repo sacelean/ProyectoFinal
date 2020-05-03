@@ -3,26 +3,56 @@ package DAO;
 import Biblioteca.Model.Articulo;
 import Biblioteca.Model.Libro;
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
-public class ArticuloDAOImpl implements DAO<Articulo> {
+import static DAO.DAOUtil.prepareStatement;
+
+public class ArticuloDAOImpl implements DAO<Articulo>{
 
 
     private DAOFactory daoFactory;
 
+
+    private static Articulo map(ResultSet resultSet) throws SQLException {
+        Articulo articulo1 = new Articulo();
+        articulo1.setISSN(resultSet.getString("ISSN"));
+        articulo1.setTitulo(resultSet.getString("titulo"));
+        articulo1.setAutor(resultSet.getString("autor"));
+        articulo1.setNombreRevista(resultSet.getString("Nombre revista"));
+        articulo1.setPaginaInicio(resultSet.getInt("Pagina inicio"));
+        articulo1.setPaginaFin(resultSet.getInt("Pagina fin"));
+        articulo1.setMes(resultSet.getInt("Mes"));
+        articulo1.setYear(resultSet.getInt("Anio"));
+        return articulo1;
+    }
+
     @Override
     public Articulo find(long id) throws DAOException {
-        return null;
+
+        Articulo result = null;
+        String sql = "Select * from articulo where idArticulo = ?";
+        try (
+                Connection connection = daoFactory.getConnection();
+                PreparedStatement statement = prepareStatement(connection, sql, false, String.valueOf(id));
+                ResultSet resultSet = statement.executeQuery()
+        ) {
+            if (resultSet.next()) {
+                result = map(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new DAOException( e.getMessage() + e.getCause());
+        }
+        return result;
     }
 
     @Override
     public List<Articulo> search(String... values) throws DAOException {
         return null;
     }
-
-
 
     @Override
     public List<Articulo> list() throws DAOException {
@@ -40,23 +70,30 @@ public class ArticuloDAOImpl implements DAO<Articulo> {
     }
 
     @Override
+    public Articulo save(Articulo articulo) throws IllegalArgumentException, DAOException {
+        articulo.setISSN(articulo.getISSN());
+        articulo.setTitulo(articulo.getTitulo());
+        articulo.setAutor(articulo.getAutor());
+        articulo.setNombreRevista(articulo.getNombreRevista());
+        articulo.setPaginaInicio(articulo.getPaginaInicio());
+        articulo.setPaginaFin(articulo.getPaginaFin());
+        articulo.setMes(articulo.getMes());
+        articulo.setYear(articulo.getYear());
+        return articulo;
+    }
+
+   /* @Override
     public long save(Articulo articulo) throws IllegalArgumentException, DAOException {
         Long generatedKey;
-        String sql = "INSERT INTO `mydb`.`articulo` (`ISSN`,`Titulo`,`Autor`,`Nombre revista`,`Pagina inicio`,`Pagina fin`,`Mes`,`Anio`,`Representacion_idRepresentacion`) VALUES (?,?,?,?,?,?,?,?,?)";
-        sql = "BEGIN " + sql + "; END;";
+        String sql = "BEGIN " + "INSERT INTO `mydb`.`articulo` (`ISSN`,`Titulo`,`Autor`,`Nombre revista`, `Pagina inicio`,`Pagina fin`, `Mes`,`Anio`,`idArticulo`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)" + "; END;";
         try (
                 Connection connection = daoFactory.getConnection();
                 CallableStatement statement = connection.prepareCall(sql)
         ) {
             int i = 1;
-            statement.setObject(i++, articulo.getISSN());
-            statement.setObject(i++, articulo.getTitulo());
-            statement.setObject(i++, articulo.getAutor());
-            statement.setObject(i++, articulo.getNombreRevista());
-            statement.setObject(i++, articulo.getPaginaInicio());
-            statement.setObject(i++, articulo.getPaginaFin());
-            statement.setObject(i++, articulo.getMes());
-            statement.setObject(i++, articulo.getYear());
+            for (Object value : values){
+                statement.setObject(i++, value);
+            }
             statement.registerOutParameter(i, Types.NUMERIC);
             statement.execute();
             generatedKey = statement.getLong(i);
@@ -64,14 +101,5 @@ public class ArticuloDAOImpl implements DAO<Articulo> {
             throw new DAOException(e);
         }
         return generatedKey;
-    }
-
-    private static Articulo map(ResultSet resultSet) throws SQLException {
-        Articulo articulo = new Articulo();
-        articulo.setISSN(resultSet.getString("ISSN"));
-        articulo.setTitulo(resultSet.getString("TITULO"));
-        articulo.setAutor(resultSet.getString("autor"));
-        //TODO: add next fields of the articulo class
-        return articulo;
-    }
+    }*/
 }

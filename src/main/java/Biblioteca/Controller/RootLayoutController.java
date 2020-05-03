@@ -16,7 +16,7 @@ public class RootLayoutController {
     @FXML
     private Button btnInsertarLibro;
     @FXML
-    private Button btnBuscarReferencia;
+    private Button btnBuscar;
     @FXML private Button btnHome;
     private Button selectedButton;
     private Main mainApp;
@@ -47,9 +47,9 @@ public class RootLayoutController {
         mainApp.showInsertarLayout();
     }
 
-    public void handleBuscarReferencia() {
-        selectButtonMenu(btnBuscarReferencia);
-        mainApp.showBuscarReferencia();
+    public void handleBuscar() {
+        selectButtonMenu(btnBuscar);
+        mainApp.showBuscar();
     }
 
     public void handleHome(){
