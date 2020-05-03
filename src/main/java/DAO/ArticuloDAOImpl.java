@@ -1,18 +1,52 @@
 package DAO;
 
 import Biblioteca.Model.Articulo;
+import Biblioteca.Model.Libro;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+
+import static DAO.DAOUtil.prepareStatement;
 
 public class ArticuloDAOImpl implements DAO<Articulo>{
 
 
     private DAOFactory daoFactory;
 
+
+    private static Articulo map(ResultSet resultSet) throws SQLException {
+        Articulo articulo1 = new Articulo();
+        articulo1.setISSN(resultSet.getString("ISSN"));
+        articulo1.setTitulo(resultSet.getString("titulo"));
+        articulo1.setAutor(resultSet.getString("autor"));
+        articulo1.setNombreRevista(resultSet.getString("Nombre revista"));
+        articulo1.setPaginaInicio(resultSet.getInt("Pagina inicio"));
+        articulo1.setPaginaFin(resultSet.getInt("Pagina fin"));
+        articulo1.setMes(resultSet.getInt("Mes"));
+        articulo1.setYear(resultSet.getInt("Anio"));
+        return articulo1;
+    }
+
     @Override
     public Articulo find(long id) throws DAOException {
 
-        return null;
+        Articulo result = null;
+        String sql = "Select * from articulo where idArticulo = ?";
+        try (
+                Connection connection = daoFactory.getConnection();
+                PreparedStatement statement = prepareStatement(connection, sql, false, String.valueOf(id));
+                ResultSet resultSet = statement.executeQuery()
+        ) {
+            if (resultSet.next()) {
+                result = map(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new DAOException( e.getMessage() + e.getCause());
+        }
+        return result;
     }
 
     @Override
@@ -37,13 +71,14 @@ public class ArticuloDAOImpl implements DAO<Articulo>{
 
     @Override
     public Articulo save(Articulo articulo) throws IllegalArgumentException, DAOException {
+        articulo.setISSN(articulo.getISSN());
         articulo.setTitulo(articulo.getTitulo());
-        articulo.setTitulo(articulo.getAutor());
+        articulo.setAutor(articulo.getAutor());
         articulo.setNombreRevista(articulo.getNombreRevista());
-        articulo.setYear(articulo.getYear());
-        articulo.setMes(articulo.getMes());
         articulo.setPaginaInicio(articulo.getPaginaInicio());
         articulo.setPaginaFin(articulo.getPaginaFin());
+        articulo.setMes(articulo.getMes());
+        articulo.setYear(articulo.getYear());
         return articulo;
     }
 

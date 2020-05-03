@@ -69,7 +69,7 @@ public class LibroDAOImpl implements DAO<Libro> {
     }
 
     @Override
-    public Articulo save(Libro libro) throws IllegalArgumentException, DAO.DAOException {
+    public Articulo save(Libro libro) throws IllegalArgumentException, DAOException {
         return 0;
     }
 }
