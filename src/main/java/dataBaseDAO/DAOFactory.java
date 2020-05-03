@@ -1,5 +1,6 @@
-package DAO;
+package dataBaseDAO;
 
+import Biblioteca.Model.Articulo;
 import Biblioteca.Model.Libro;
 
 import java.sql.Connection;
@@ -118,6 +119,9 @@ public abstract class DAOFactory {
     }
     public DAO<Libro> getLibroDAO() {
         return new LibroDAOImpl(this);
+    }
+    public DAO<Articulo> getArticuloDAO() {
+        return new ArticuloDAOImpl(this);
     }
 
     // You can add more DAO implementation getters here.

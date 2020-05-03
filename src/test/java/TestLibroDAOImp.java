@@ -1,13 +1,21 @@
 import Biblioteca.Model.Libro;
-import DAO.DAO;
-import DAO.DAOFactory;
+import dataBaseDAO.DAO;
+import dataBaseDAO.DAOFactory;
 import org.junit.Test;
 
 public class TestLibroDAOImp {
+
+    DAO<Libro> db = DAOFactory.getInstance().getLibroDAO();
+
     @Test
     public void testLibroDAO(){
-        DAO<Libro> libro = DAOFactory.getInstance().getLibroDAO();
-        Libro l = libro.find(1);
+        Libro l = db.find(1);
         System.out.printf(l.getTitulo());
+    }
+
+    @Test
+    public void testSaveLibro() {
+        Libro l = new Libro("titulo2", "autor12", "123124re2", 2019, "editorial21", 1220, 0);
+        db.save(l);
     }
 }

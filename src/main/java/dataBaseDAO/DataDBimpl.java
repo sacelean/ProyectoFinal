@@ -1,11 +1,11 @@
-package DAO;
+package dataBaseDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static DAO.DAOUtil.prepareStatement;
+import static dataBaseDAO.DAOUtil.prepareStatement;
 import static java.lang.String.valueOf;
 
 public class DataDBimpl implements DataDB{

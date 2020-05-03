@@ -1,12 +1,11 @@
-package DAO;
+package dataBaseDAO;
 
-import Biblioteca.Model.Articulo;
 import Biblioteca.Model.Libro;
-
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-import static DAO.DAOUtil.prepareStatement;
+import static dataBaseDAO.DAOUtil.prepareStatement;
 
 public class LibroDAOImpl implements DAO<Libro> {
 
@@ -59,7 +58,7 @@ public class LibroDAOImpl implements DAO<Libro> {
     public int update(Libro libro, String... values) throws IllegalArgumentException, DAOException {
 
         //como decirle la columna y el valor?
-       String sql =  ("UPDATE libro SET columna= algo where idLibro =" + libro.setIdLibro(libro.getIdLibro()));
+       String sql =  ("UPDATE libro SET columna= algo where idLibro = ? ");
 
         int generatedKey;
         try (
@@ -81,15 +80,14 @@ public class LibroDAOImpl implements DAO<Libro> {
 
     @Override
     public int delete(Libro libro) throws IllegalArgumentException, DAOException {
-        String sql = ( "delete libro from libro where idLibro ="+ libro.getIdLibro());
-
+        String sql = ( "delete libro from libro where idLibro = ?");
         try (
                 Connection connection = daoFactory.getConnection();
-                PreparedStatement statement = prepareStatement(connection, sql, false, String.valueOf(id));
-                ResultSet resultSet = statement.executeQuery()
+                PreparedStatement statement = prepareStatement(connection, sql, false, String.valueOf(libro.getIdLibro()));
         ) {
-            if (resultSet.next()) {
-                result = map(resultSet);
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows == 0) {
+                throw new DAOException("Error al borrar un Libro, ninguna fila eliminada.");
             }
         } catch (SQLException e) {
             throw new DAOException( e.getMessage() + e.getCause());
@@ -98,15 +96,34 @@ public class LibroDAOImpl implements DAO<Libro> {
        return 0;
     }
 
-    @Override
-    public Libro save(Libro libro) throws IllegalArgumentException, DAOException {
-        libro.setISBN(libro.getISBN());
-        libro.setTitulo(libro.getTitulo());
-        libro.setAutor(libro.getAutor());
-        libro.setEditorial(libro.getEditorial());
-        libro.setPageNumber(libro.getPageNumber());
-        libro.setYear(libro.getYear());
 
-        return libro;
+    private List<String> setValues(Libro libro){
+        List<String> values = new ArrayList<>();
+        values.add(libro.getISBN());
+        values.add(libro.getTitulo());
+        values.add(libro.getAutor());
+        values.add(libro.getEditorial());
+        values.add(String.valueOf(libro.getPageNumber()));
+        values.add(String.valueOf(libro.getYear()));
+        return values;
+    }
+
+    @Override
+    public void save(Libro libro) throws IllegalArgumentException {
+        String sql = "INSERT INTO `libro` (`ISBN`,`Titulo`,`Autor`, `Editorial`, `Numero de paginas`, `Anio`, `idLibro`) VALUES (?, ?, ?, ?, ?, ?, 0)";
+        List<String> values = setValues(libro);
+
+        try (
+                Connection connection = daoFactory.getConnection();
+                CallableStatement statement = connection.prepareCall(sql)
+        ) {
+            int i = 0;
+            for (Object value : values){
+                statement.setObject(++i, value);
+            }
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
     }
 }

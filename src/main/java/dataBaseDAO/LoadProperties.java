@@ -1,4 +1,4 @@
-package DAO;
+package dataBaseDAO;
 
 
 import java.io.InputStream;
@@ -19,7 +19,7 @@ public class LoadProperties {
         this.user = "root";
         this.pass = "Anna2019+";
         this.driverClass = "com.mysql.cj.jdbc.Driver";
-		this.strURLConnection = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT&useSSL=false";
+		this.strURLConnection = "jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT&useSSL=false";
     }
 
 

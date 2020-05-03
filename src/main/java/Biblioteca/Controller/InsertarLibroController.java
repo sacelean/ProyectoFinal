@@ -1,8 +1,9 @@
 package Biblioteca.Controller;
 
 import Biblioteca.Main;
-import Biblioteca.Model.Articulo;
 import Biblioteca.Model.Libro;
+import dataBaseDAO.DAO;
+import dataBaseDAO.DAOFactory;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -12,9 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class InsertarLibroController {
 
@@ -39,11 +37,16 @@ public class InsertarLibroController {
     @FXML private JFXTextField JTxtISBN;
     private Main mainApp;
     //para poder usar abajo los metodos del libro
-    private Libro l;
+    private Libro libro;
     private boolean okCLicked = false;
 
     //para poner un futuro boton de cancelar
     private Stage dialogStage;
+
+    @FXML
+    public void initialize(){
+        libro = new Libro();
+    }
 
 
     public InsertarLibroController(){
@@ -91,10 +94,11 @@ public class InsertarLibroController {
 
     private void handleOk() {
         if (isInputValid()) {
-            l.setTitulo(JTxtTitulo.getText());
-            l.setAutor(JTxtAutor.getText());
-            l.setISBN(JTxtISBN.getText());
-
+            libro.setTitulo(JTxtTitulo.getText());
+            libro.setAutor(JTxtAutor.getText());
+            libro.setISBN(JTxtISBN.getText());
+            DAO<Libro> db = DAOFactory.getInstance().getLibroDAO();
+            db.save(libro);
             this.okCLicked = true;
             dialogStage.close();
         }

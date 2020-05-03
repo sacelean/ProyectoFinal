@@ -1,4 +1,4 @@
-package DAO;
+package dataBaseDAO;
 /**
  * This class represents a generic DAO exception. It should wrap any exception of the underlying
  * code, such as SQLExceptions.

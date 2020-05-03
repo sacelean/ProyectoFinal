@@ -1,20 +1,21 @@
-package DAO;
+package dataBaseDAO;
 
 import Biblioteca.Model.Articulo;
-import Biblioteca.Model.Libro;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-import static DAO.DAOUtil.prepareStatement;
+import static dataBaseDAO.DAOUtil.prepareStatement;
 
 public class ArticuloDAOImpl implements DAO<Articulo>{
 
 
     private DAOFactory daoFactory;
+
+    public ArticuloDAOImpl(DAOFactory daoFactory) {
+        this.daoFactory = daoFactory;
+    }
 
 
     private static Articulo map(ResultSet resultSet) throws SQLException {
@@ -69,37 +70,37 @@ public class ArticuloDAOImpl implements DAO<Articulo>{
         return 0;
     }
 
-    @Override
-    public Articulo save(Articulo articulo) throws IllegalArgumentException, DAOException {
-        articulo.setISSN(articulo.getISSN());
-        articulo.setTitulo(articulo.getTitulo());
-        articulo.setAutor(articulo.getAutor());
-        articulo.setNombreRevista(articulo.getNombreRevista());
-        articulo.setPaginaInicio(articulo.getPaginaInicio());
-        articulo.setPaginaFin(articulo.getPaginaFin());
-        articulo.setMes(articulo.getMes());
-        articulo.setYear(articulo.getYear());
-        return articulo;
+    private List<String> setValues(Articulo articulo){
+        List<String> values = new ArrayList<>();
+        values.add(articulo.getISSN());
+        values.add(articulo.getTitulo());
+        values.add(articulo.getAutor());
+        values.add(articulo.getNombreRevista());
+        values.add(String.valueOf(articulo.getPaginaInicio()));
+        values.add(String.valueOf(articulo.getPaginaFin()));
+        values.add(String.valueOf(articulo.getMes()));
+        values.add(String.valueOf(articulo.getYear()));
+        return values;
     }
 
-   /* @Override
-    public long save(Articulo articulo) throws IllegalArgumentException, DAOException {
-        Long generatedKey;
-        String sql = "BEGIN " + "INSERT INTO `mydb`.`articulo` (`ISSN`,`Titulo`,`Autor`,`Nombre revista`, `Pagina inicio`,`Pagina fin`, `Mes`,`Anio`,`idArticulo`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)" + "; END;";
+    @Override
+    public void save(Articulo articulo) throws IllegalArgumentException {
+        String sql = "INSERT INTO `mydb`.`articulo` (`ISSN`,`Titulo`,`Autor`,`Nombre revista`, `Pagina inicio`,`Pagina fin`, `Mes`,`Anio`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        sql = "BEGIN " + sql + "; END;";
+        List<String> values = setValues(articulo);
+
         try (
                 Connection connection = daoFactory.getConnection();
                 CallableStatement statement = connection.prepareCall(sql)
         ) {
-            int i = 1;
+            int i = 0;
             for (Object value : values){
                 statement.setObject(i++, value);
             }
             statement.registerOutParameter(i, Types.NUMERIC);
             statement.execute();
-            generatedKey = statement.getLong(i);
         } catch (SQLException e) {
             throw new DAOException(e);
         }
-        return generatedKey;
-    }*/
+    }
 }
