@@ -51,6 +51,7 @@ public class LibroDAOImpl implements DAO<Libro> {
 
     @Override
     public List<Libro> list() throws DAOException {
+
         return null;
     }
 
@@ -58,6 +59,7 @@ public class LibroDAOImpl implements DAO<Libro> {
     public int update(Libro libro, String... values) throws IllegalArgumentException, DAOException {
 
         //como decirle la columna y el valor?
+
        String sql =  ("UPDATE libro SET columna= algo where idLibro = ? ");
 
         int generatedKey;
@@ -78,9 +80,16 @@ public class LibroDAOImpl implements DAO<Libro> {
         return generatedKey;
     }
 
+
+    private List<String> setDelete(Libro l){
+        List<String> valores = new ArrayList<>();
+        valores.clear();
+        return valores;
+    }
+
     @Override
     public int delete(Libro libro) throws IllegalArgumentException, DAOException {
-        String sql = ( "delete libro from libro where idLibro = ?");
+        String sql = ( "delete libro from libro where idLibro = " + libro.getIdLibro());
         List<String> values = setDelete(libro);
         try (
                 Connection connection = daoFactory.getConnection();
@@ -101,11 +110,7 @@ public class LibroDAOImpl implements DAO<Libro> {
        return 0;
     }
 
-    private List<String> setDelete(Libro l){
-        List<String> valores = new ArrayList<>();
-        valores.clear();
-        return valores;
-    }
+
 
     private List<String> setValues(Libro libro){
         List<String> values = new ArrayList<>();

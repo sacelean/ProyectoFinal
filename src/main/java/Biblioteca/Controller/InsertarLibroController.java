@@ -6,15 +6,21 @@ import dataBaseDAO.DAO;
 import dataBaseDAO.DAOFactory;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import dataBaseDAO.DataDB;
+import dataBaseDAO.LibroDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class InsertarLibroController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class InsertarLibroController{
 
 
     @FXML private AnchorPane anchorPaneLibro;
@@ -38,6 +44,8 @@ public class InsertarLibroController {
     private Main mainApp;
     //para poder usar abajo los metodos del libro
     private Libro libro;
+    private DAOFactory daoFactory;
+    private LibroDAOImpl libroimpl = new LibroDAOImpl(daoFactory);
     private boolean okCLicked = false;
 
     //para poner un futuro boton de cancelar
@@ -58,6 +66,10 @@ public class InsertarLibroController {
     }
 
     public void handleCrear(ActionEvent actionEvent) {
+        //asi con todos?
+        libro.setTitulo(JTxtTitulo.getText());
+
+        //como lo meto en la bbdd??
 
     }
     public boolean isOkClicked() {
@@ -113,6 +125,5 @@ public class InsertarLibroController {
         String s = JTxtTitulo.getText();
         return s;
     }
-
 
 }
