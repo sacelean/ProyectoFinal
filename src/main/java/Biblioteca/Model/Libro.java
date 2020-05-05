@@ -2,32 +2,35 @@ package Biblioteca.Model;
 
 public class Libro {
 
+    private int idLibro;
+    private String ISBN;
     private String titulo;
     private String autor;
-    private String ISBN;
-    private int year;
     private String editorial;
     private int pageNumber;
-    private int idLibro;
+    private int year;
+
 
     public Libro() {
+        this.idLibro = 0;
+        this.ISBN = "";
         this.titulo = "";
         this.autor = "";
         this.editorial = "";
-        this.year = 0000;
-        this.ISBN = "";
         this.pageNumber = 0;
-        this.idLibro = 0;
+        this.year = 0000;
+
     }
 
-    public Libro(String titulo, String autor, String ISBN, int year, String editorial, int pageNumber, int id) {
+    public Libro(int id , String ISBN, String titulo, String autor, String editorial, int pageNumber, int year) {
+        this.idLibro = id;
         this.titulo = titulo;
         this.autor = autor;
         this.ISBN = ISBN;
         this.year = year;
         this.editorial = editorial;
         this.pageNumber = pageNumber;
-        this.idLibro = id;
+
     }
 
     //Getter Setter
@@ -83,7 +86,4 @@ public class Libro {
         return idLibro;
     }
 
-    public void setIdLibro(int idLibro) {
-        this.idLibro = idLibro;
-    }
 }

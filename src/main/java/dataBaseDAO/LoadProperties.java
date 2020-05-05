@@ -17,7 +17,7 @@ public class LoadProperties {
 
 	public LoadProperties() {
         this.user = "root";
-        this.pass = "Anna2019+";
+        this.pass = "quequieres";
         this.driverClass = "com.mysql.cj.jdbc.Driver";
 		this.strURLConnection = "jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT&useSSL=false";
     }

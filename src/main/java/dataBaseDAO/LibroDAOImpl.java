@@ -81,14 +81,19 @@ public class LibroDAOImpl implements DAO<Libro> {
     @Override
     public int delete(Libro libro) throws IllegalArgumentException, DAOException {
         String sql = ( "delete libro from libro where idLibro = ?");
+        List<String> values = setDelete(libro);
         try (
                 Connection connection = daoFactory.getConnection();
                 PreparedStatement statement = prepareStatement(connection, sql, false, String.valueOf(libro.getIdLibro()));
         ) {
+            int i = 0;
+            for (Object value : values){
+                statement.setObject(++i, value);
+            }
             int affectedRows = statement.executeUpdate();
             if (affectedRows == 0) {
                 throw new DAOException("Error al borrar un Libro, ninguna fila eliminada.");
-            }
+        }
         } catch (SQLException e) {
             throw new DAOException( e.getMessage() + e.getCause());
         }
@@ -96,6 +101,11 @@ public class LibroDAOImpl implements DAO<Libro> {
        return 0;
     }
 
+    private List<String> setDelete(Libro l){
+        List<String> valores = new ArrayList<>();
+        valores.clear();
+        return valores;
+    }
 
     private List<String> setValues(Libro libro){
         List<String> values = new ArrayList<>();
@@ -110,7 +120,7 @@ public class LibroDAOImpl implements DAO<Libro> {
 
     @Override
     public void save(Libro libro) throws IllegalArgumentException {
-        String sql = "INSERT INTO `libro` (`ISBN`,`Titulo`,`Autor`, `Editorial`, `Numero de paginas`, `Anio`, `idLibro`) VALUES (?, ?, ?, ?, ?, ?, 0)";
+        String sql = "INSERT INTO `libro` (`idLibro`,`ISBN`,`Titulo`,`Autor`, `Editorial`, `Numero de paginas`, `Anio`) VALUES (0, ?, ?, ?, ?, ?, ?)";
         List<String> values = setValues(libro);
 
         try (

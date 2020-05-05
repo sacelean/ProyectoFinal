@@ -1,4 +1,5 @@
 package Biblioteca.Model;
 
-public class Tema {
+public enum Tema {
+    TECNOLOGIA, CIENCIA, HISTORIA;
 }

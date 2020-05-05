@@ -2,6 +2,7 @@ package Biblioteca.Model;
 
 public class Articulo {
 
+    private int idArticulo;
     private String ISSN;
     private String titulo;
     private String autor;
@@ -13,6 +14,7 @@ public class Articulo {
 
 
     public Articulo (){
+        this.idArticulo = 0;
         this.ISSN = "";
         this.titulo = "";
         this.autor = "";
@@ -23,13 +25,15 @@ public class Articulo {
         this.paginaFin = 0;
     }
 
-    public Articulo(String titulo, String autor, String nombreRevista){
+    public Articulo(int idArticulo, String titulo, String autor, String nombreRevista){
+        this.idArticulo = idArticulo;
         this.titulo = titulo;
         this.autor = autor;
         this.nombreRevista = nombreRevista;
     }
 
-    public Articulo (String ISSN, String titulo, String autor, String nombreRevista, int mes, int year , int paginaIni, int paginaF) {
+    public Articulo (int id, String ISSN, String titulo, String autor, String nombreRevista, int mes, int year , int paginaIni, int paginaF) {
+        this.idArticulo = id;
         this.ISSN = ISSN;
         this.titulo = titulo;
         this.autor = autor;
@@ -39,6 +43,10 @@ public class Articulo {
         this.paginaInicio = paginaIni;
         this.paginaFin = paginaF;
 
+    }
+
+    public int getIdArticulo() {
+        return idArticulo;
     }
 
     public String getISSN() {

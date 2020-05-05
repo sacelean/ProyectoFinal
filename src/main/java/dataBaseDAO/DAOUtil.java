@@ -28,10 +28,7 @@ public final class DAOUtil {
      * @param values The parameter values to be set in the created PreparedStatement.
      * @throws SQLException If something fails during creating the PreparedStatement.
      */
-    public static PreparedStatement prepareStatement
-        (Connection connection, String sql, boolean returnGeneratedKeys, String values)
-            throws SQLException
-    {
+    public static PreparedStatement prepareStatement (Connection connection, String sql, boolean returnGeneratedKeys, String values) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(sql,
                 returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS);
 
