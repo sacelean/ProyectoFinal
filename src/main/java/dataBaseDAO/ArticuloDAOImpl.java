@@ -85,7 +85,7 @@ public class ArticuloDAOImpl implements DAO<Articulo>{
 
     @Override
     public void save(Articulo articulo) throws IllegalArgumentException {
-        String sql = "INSERT INTO `mydb`.`articulo` (`ISSN`,`Titulo`,`Autor`,`Nombre revista`, `Pagina inicio`,`Pagina fin`, `Mes`,`Anio`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `mydb`.`articulo` ('idArticulo',`ISSN`,`Titulo`,`Autor`,`Nombre revista`, `Pagina inicio`,`Pagina fin`, `Mes`,`Anio`) VALUES (0,?, ?, ?, ?, ?, ?, ?, ?)";
         sql = "BEGIN " + sql + "; END;";
         List<String> values = setValues(articulo);
 
